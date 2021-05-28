@@ -102,7 +102,6 @@ def computer_crawling():
 
 
 
-
 info_message = '''- 학교 공지사항 : "학교" or "ㅎㄱ" 입력
 - 컴공 공지사항 : "컴공" or "ㅋㄱ" 입력'''
 bot.sendMessage(chat_id=id, text=info_message)
@@ -113,10 +112,14 @@ def handler(update, context):
     if (user_text == "학교") or (user_text == "ㅎㄱ"):
         campus_crawling()
         bot.sendMessage(chat_id=id, text=info_message)
+        
     elif (user_text == "컴공") or (user_text == "ㅋㄱ"):
-        computer = computer_crawling()
-        bot.send_message(chat_id=id, text=computer)
+        computer_crawling()
         bot.sendMessage(chat_id=id, text=info_message)
+        
+    else:
+         bot.send_message(chat_id=id, text="다시 입력해주세요")
+         bot.sendMessage(chat_id=id, text=info_message)
 
 echo_handler = MessageHandler(Filters.text, handler)
 dispatcher.add_handler(echo_handler)
